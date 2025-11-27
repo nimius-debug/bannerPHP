@@ -1,0 +1,440 @@
+// ----------------------------------------------------------------------
+// --- START: CUSTOM BLACK FRIDAY BANNER CODE (Your Original Code) ---
+// ----------------------------------------------------------------------
+
+/* CUSTOM BANNER */
+add_action( 'astra_header_before', 'custom_top_bar' );
+function custom_top_bar() {
+    ?>
+    <div id="bf-top-bar">
+        <div class="bf-marquee">
+            <span>✨ Black Friday Glow Event: 15% OFF all products + FREE shipping on orders $175+ ✨</span>
+        </div>
+
+        <div class="bf-bottom-row">
+            <div class="bf-offer-text">
+                <span class="bf-tagline">Limited-time event • Online + in-studio favorites</span>
+            </div>
+
+            <div class="bf-countdown-wrapper">
+                <span class="bf-countdown-label">Sale ends in</span>
+                <div id="bf-countdown">
+                    <div class="bf-time-section">
+                        <span class="bf-time-number" id="bf-days">00</span>
+                        <span class="bf-time-label">Days</span>
+                    </div>
+                    <div class="bf-time-section">
+                        <span class="bf-time-number" id="bf-hours">00</span>
+                        <span class="bf-time-label">Hours</span>
+                    </div>
+                    <div class="bf-time-section">
+                        <span class="bf-time-number" id="bf-minutes">00</span>
+                        <span class="bf-time-label">Minutes</span>
+                    </div>
+                    <div class="bf-time-section">
+                        <span class="bf-time-number" id="bf-seconds">00</span>
+                        <span class="bf-time-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+
+            <a href="https://skinbylauralo.com/shop/" id="bf-specials-button">
+                Shop the Black Friday Sale
+            </a>
+        </div>
+    </div>
+
+    <style>
+        #bf-top-bar {
+            background: #000;
+            color: #fff;
+            padding: 10px 16px 14px;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            font-size: 14px;
+            position: relative;
+            z-index: 9999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+        }
+
+        .bf-marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            padding-bottom: 4px;
+            margin-bottom: 8px;
+        }
+
+        .bf-marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: bf-marquee 18s linear infinite;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+
+        @keyframes bf-marquee {
+            0%  { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .bf-bottom-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+        }
+
+        .bf-offer-text {
+            color: #f5f5f5;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .bf-countdown-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bf-countdown-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            opacity: 0.8;
+        }
+
+        #bf-countdown {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .bf-time-section {
+            text-align: center;
+            min-width: 44px;
+        }
+
+        .bf-time-number {
+            display: block;
+            font-size: 16px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #ff3b3b, #ff6b6b);
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .bf-time-label {
+            font-size: 10px;
+            margin-top: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.8;
+        }
+
+        #bf-specials-button {
+            display: inline-block;
+            padding: 9px 18px;
+            background: linear-gradient(135deg, #ffffff, #f3f3f3);
+            color: #000;
+            text-decoration: none;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            border: 1px solid #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        #bf-specials-button:hover {
+            background: #ff3b3b;
+            color: #fff;
+            border-color: #ff3b3b;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .bf-marquee span {
+                font-size: 12px;
+            }
+            .bf-bottom-row {
+                flex-direction: column;
+            }
+            .bf-countdown-wrapper {
+                order: 2;
+            }
+            #bf-specials-button {
+                order: 3;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #bf-top-bar {
+                padding: 8px 10px 10px;
+            }
+            .bf-time-number {
+                font-size: 14px;
+            }
+            .bf-time-section {
+                min-width: 38px;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // TODO: Update this date to match when you want the sale to end.
+            var targetDate = new Date('Dec 01, 2025 23:59:59').getTime();
+
+            var daysElement = document.getElementById('bf-days');
+            var hoursElement = document.getElementById('bf-hours');
+            var minutesElement = document.getElementById('bf-minutes');
+            var secondsElement = document.getElementById('bf-seconds');
+            var countdownContainer = document.getElementById('bf-countdown');
+            var label = document.querySelector('.bf-countdown-label');
+
+            function updateCountdown() {
+                var now = new Date().getTime();
+                var distance = targetDate - now;
+
+                if (distance <= 0) {
+                    clearInterval(countdownInterval);
+                    if (countdownContainer && label) {
+                        label.textContent = '';
+                        countdownContainer.innerHTML = '🔥 Black Friday sale has ended – stay tuned for our next event.';
+                    }
+                    return;
+                }
+
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                daysElement.textContent = days.toString().padStart(2, '0');
+                hoursElement.textContent = hours.toString().padStart(2, '0');
+                minutesElement.textContent = minutes.toString().padStart(2, '0');
+                secondsElement.textContent = seconds.toString().padStart(2, '0');
+            }
+
+            updateCountdown();
+            var countdownInterval = setInterval(updateCountdown, 1000);
+        });
+    </script>
+    <?php
+}
+
+// ----------------------------------------------------------------------
+// --- END: CUSTOM BLACK FRIDAY BANNER CODE ---
+// ----------------------------------------------------------------------
+
+
+// ----------------------------------------------------------------------
+// --- START: FREE GIFT PROGRESS BAR LOGIC (UPDATED) ---
+// ----------------------------------------------------------------------
+
+// --- CONFIGURATION ---
+define( 'LL_FREE_GIFT_ID', 5083 ); 
+define( 'LL_FREE_GIFT_THRESHOLD', 250 );
+
+// --- LOGIC: Add/Remove Free Gift ---
+add_action( 'woocommerce_before_calculate_totals', 'll_check_free_gift_threshold', 20 );
+function ll_check_free_gift_threshold( $cart ) {
+    if ( is_admin() && ! defined( 'DOING_AJAX' ) ) return;
+    if ( ! LL_FREE_GIFT_ID || ! LL_FREE_GIFT_THRESHOLD ) return;
+
+    $threshold = LL_FREE_GIFT_THRESHOLD;
+    $gift_id   = LL_FREE_GIFT_ID;
+
+    $subtotal = 0;
+    $gift_key = false;
+
+    foreach ( $cart->get_cart() as $key => $item ) {
+        if ( (int) $item['product_id'] === (int) $gift_id ) {
+            $gift_key = $key;
+        } else {
+            $subtotal += $item['line_subtotal'];
+        }
+    }
+
+    if ( $subtotal >= $threshold ) {
+        // Add gift if missing
+        if ( ! $gift_key ) {
+            $gift_key = $cart->add_to_cart( $gift_id, 1, 0, array(), array( 'll_is_free_gift' => true ) );
+        }
+        // Force price to 0
+        if ( $gift_key && isset( $cart->cart_contents[ $gift_key ] ) ) {
+            $cart->cart_contents[ $gift_key ]['data']->set_price( 0 );
+            $cart->cart_contents[ $gift_key ]['ll_is_free_gift'] = true;
+        }
+    } else {
+        // Remove gift if present
+        if ( $gift_key ) {
+            $cart->remove_cart_item( $gift_key );
+        }
+    }
+}
+
+// Visuals: Show $0.00 price
+add_filter( 'woocommerce_cart_item_price', 'll_display_free_gift_price', 10, 3 );
+function ll_display_free_gift_price( $price, $cart_item, $cart_item_key ) {
+    if ( isset( $cart_item['ll_is_free_gift'] ) && $cart_item['ll_is_free_gift'] ) {
+        return wc_price( 0 );
+    }
+    return $price;
+}
+
+add_filter( 'woocommerce_cart_item_subtotal', 'll_display_free_gift_subtotal', 10, 3 );
+function ll_display_free_gift_subtotal( $subtotal, $cart_item, $cart_item_key ) {
+    if ( isset( $cart_item['ll_is_free_gift'] ) && $cart_item['ll_is_free_gift'] ) {
+        return wc_price( 0 );
+    }
+    return $subtotal;
+}
+
+// --- VISUALS: The Progress Bar Function ---
+function ll_render_free_gift_progress_bar() {
+    if ( ! class_exists( 'WooCommerce' ) || ! WC()->cart ) return '';
+
+    $cart = WC()->cart;
+    $cart_has_items = ! $cart->is_empty();
+
+    $threshold = LL_FREE_GIFT_THRESHOLD;
+    $subtotal  = 0;
+
+    // Calculate subtotal excluding gift
+    if ( $cart_has_items ) {
+        foreach ( $cart->get_cart() as $item ) {
+            if ( (int) $item['product_id'] === (int) LL_FREE_GIFT_ID ) continue;
+            $subtotal += $item['line_subtotal'];
+        }
+    }
+
+    $remaining = max( 0, $threshold - $subtotal );
+    $percent   = ($threshold > 0) ? min( 100, ( $subtotal / $threshold ) * 100 ) : 0;
+    
+    ob_start();
+    ?>
+    <div id="ll-gift-progress-wrapper" class="cart-progress-bar-container">
+        <?php if ( $cart_has_items ) : // Only show content if the cart is NOT empty ?>
+            <div class="ll-gift-inner">
+                <div class="ll-gift-text">
+                    <?php if ( $subtotal >= $threshold ) : ?>
+                        <span class="ll-gift-emoji">🎁</span>
+                        <span class="ll-gift-message">
+                            You’ve unlocked your **complimentary gift** — it’s been added to your cart for $0.
+                        </span>
+                    <?php else : ?>
+                        <span class="ll-gift-emoji">✨</span>
+                        <span class="ll-gift-message">
+                            Spend **<?php echo wc_price( $remaining ); ?>** more in skincare to receive a complimentary gift.
+                        </span>
+                    <?php endif; ?>
+                </div>
+
+                <div class="ll-gift-bar-outer">
+                    <div class="ll-gift-bar-inner" style="width: <?php echo esc_attr( $percent ); ?>%;"></div>
+                </div>
+            </div>
+        <?php else : ?>
+            <?php endif; ?>
+    </div>
+
+    <style>
+        .cart-progress-bar-container {
+            /* Styles for the bar container when placed inside the cart/mini-cart */
+            padding: 15px 0;
+            margin-bottom: 20px; /* Adds space below the bar on the cart page */
+            background: #000;
+            border: 1px solid #222;
+            color: #fff;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+        }
+        
+        /* The rest of the styles remain mostly the same */
+        .ll-gift-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .ll-gift-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .ll-gift-message strong {
+            font-weight: 700;
+            color: #fff;
+            text-decoration: underline;
+            text-decoration-color: #ff3b3b;
+        }
+
+        .ll-gift-emoji {
+            font-size: 18px;
+        }
+
+        .ll-gift-bar-outer {
+            width: 100%;
+            height: 6px;
+            border-radius: 999px;
+            background: #333;
+            overflow: hidden;
+        }
+
+        .ll-gift-bar-inner {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #ff3b3b, #ff9b7b);
+            transition: width 0.5s ease-in-out;
+            box-shadow: 0 0 10px rgba(255, 59, 59, 0.5);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .ll-gift-text { font-size: 12px; flex-direction: column; gap: 2px; }
+            .ll-gift-emoji { display: none; }
+        }
+    </style>
+    <?php
+    return ob_get_clean();
+}
+
+// Hook 1: Show the bar inside the main Cart content area
+add_action( 'woocommerce_before_cart', 'show_free_gift_bar_in_cart', 10 );
+// Hook 2: Show the bar inside the Mini Cart dropdown/sidebar
+add_action( 'woocommerce_before_mini_cart', 'show_free_gift_bar_in_cart', 10 );
+
+function show_free_gift_bar_in_cart() {
+    echo ll_render_free_gift_progress_bar();
+}
+
+// --- AJAX: Update the bar when cart changes ---
+add_filter( 'woocommerce_add_to_cart_fragments', 'll_refresh_gift_progress_bar_fragment' );
+function ll_refresh_gift_progress_bar_fragment( $fragments ) {
+    // The key MUST match the wrapper ID
+    $fragments['#ll-gift-progress-wrapper'] = ll_render_free_gift_progress_bar();
+    return $fragments;
+}
+
+// ----------------------------------------------------------------------
+// --- END: FREE GIFT PROGRESS BAR LOGIC (UPDATED) ---
+// ----------------------------------------------------------------------
