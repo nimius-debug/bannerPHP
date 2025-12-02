@@ -1,3 +1,4 @@
+
 // ----------------------------------------------------------------------
 // --- START: CUSTOM BLACK FRIDAY BANNER CODE (Your Original Code) ---
 // ----------------------------------------------------------------------
@@ -338,7 +339,7 @@ function ll_render_free_gift_progress_bar() {
                     <?php else : ?>
                         <span class="ll-gift-emoji">✨</span>
                         <span class="ll-gift-message">
-                            Spend **<?php echo wc_price( $remaining ); ?>** more in skincare to receive a complimentary gift.
+                           Spend <strong class="ll-remaining-price"><?php echo wc_price( $remaining ); ?></strong> more in skincare to receive a complimentary gift.
                         </span>
                     <?php endif; ?>
                 </div>
@@ -361,7 +362,17 @@ function ll_render_free_gift_progress_bar() {
             color: #fff;
             font-family: "Helvetica Neue", Arial, sans-serif;
         }
-        
+        /* ========================================================== */
+        /* FIX FOR BLACK PRICE: High Specificity Targeting for Widgets */
+        /* ========================================================== */
+        /* Target the specific nested elements within the widget context */
+        .cart-progress-bar-container.ll-gift-message strong.ll-remaining-price .woocommerce-Price-amount,
+        .cart-progress-bar-container.ll-gift-message strong.ll-remaining-price .woocommerce-Price-currencySymbol,
+        .ll-gift-message strong.ll-remaining-price .woocommerce-Price-amount,
+        .ll-gift-message strong.ll-remaining-price .woocommerce-Price-currencySymbol {
+            color: #FF3B3B !important; /* Force Red/Pink color */
+            text-decoration: none !important;
+        }
         /* The rest of the styles remain mostly the same */
         .ll-gift-inner {
             max-width: 1100px;
