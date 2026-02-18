@@ -1,0 +1,429 @@
+// ----------------------------------------------------------------------
+// --- START: VALENTINE TOP BANNER + PRODUCT PAGE MARQUEE + FREE SHIPPING ---
+// --- Ends Feb 15 @ 11:59:59pm ---
+// ----------------------------------------------------------------------
+
+/**
+ * Reusable marquee HTML (so we can use it in header AND product page)
+ */
+function ll_valentine_marquee_markup() {
+    ?>
+    <div class="ll-vday-marquee">
+        <span>💘 Valentine’s Glow Event: 15% OFF all products + FREE shipping on orders $125+ 💘</span>
+    </div>
+    <?php
+}
+
+/**
+ * GLOBAL MARQUEE STYLES (used everywhere)
+ * (Forced animation + translate3d to prevent theme/optimizer overrides)
+ */
+add_action( 'astra_header_before', 'll_valentine_marquee_styles' );
+function ll_valentine_marquee_styles() {
+    ?>
+    <style>
+        .ll-vday-marquee{
+            --vday-rose:#E11D48;
+            --vday-blush:#FB7185;
+            --vday-champagne:#FFE4E6;
+            --vday-border: rgba(255,228,230,0.22);
+
+            overflow:hidden;
+            white-space:nowrap;
+            background:#000;
+            border:1px solid var(--vday-border);
+            padding:10px 0;
+            position:relative;
+            border-radius: 12px;
+        }
+
+        .ll-vday-marquee:before{
+            content:"";
+            position:absolute;
+            left:0; right:0; top:0;
+            height:2px;
+            background:linear-gradient(90deg, transparent, var(--vday-rose), var(--vday-blush), transparent);
+            opacity:.9;
+        }
+
+        .ll-vday-marquee span{
+            display:inline-block;
+            padding-left:100%;
+            will-change: transform;
+            animation: ll-vday-marquee 18s linear infinite !important;
+            -webkit-animation: ll-vday-marquee 18s linear infinite !important;
+            font-weight:800;
+            letter-spacing:.06em;
+            text-transform:uppercase;
+            font-size:13px;
+            color:var(--vday-champagne);
+            text-shadow:0 0 10px rgba(225,29,72,0.20);
+        }
+
+        @-webkit-keyframes ll-vday-marquee{
+            0%   { -webkit-transform: translate3d(0,0,0); }
+            100% { -webkit-transform: translate3d(-100%,0,0); }
+        }
+        @keyframes ll-vday-marquee{
+            0%   { transform: translate3d(0,0,0); }
+            100% { transform: translate3d(-100%,0,0); }
+        }
+
+        @media (max-width:768px){
+            .ll-vday-marquee span{ font-size:12px; }
+        }
+    </style>
+    <?php
+}
+
+/**
+ * TOP HEADER BANNER (Astra)
+ */
+add_action( 'astra_header_before', 'll_valentine_top_bar' );
+function ll_valentine_top_bar() {
+    ?>
+    <div id="ll-vday-top-bar">
+        <?php ll_valentine_marquee_markup(); ?>
+
+        <div class="ll-vday-bottom-row">
+            <div class="ll-vday-offer-text">
+                <span class="ll-vday-tagline">Limited-time event • Online + in-studio favorites</span>
+            </div>
+
+            <div class="ll-vday-countdown-wrapper">
+                <span class="ll-vday-countdown-label">Offer ends in</span>
+                <div id="ll-vday-countdown">
+                    <div class="ll-vday-time-section">
+                        <span class="ll-vday-time-number" id="ll-vday-days">00</span>
+                        <span class="ll-vday-time-label">Days</span>
+                    </div>
+                    <div class="ll-vday-time-section">
+                        <span class="ll-vday-time-number" id="ll-vday-hours">00</span>
+                        <span class="ll-vday-time-label">Hours</span>
+                    </div>
+                    <div class="ll-vday-time-section">
+                        <span class="ll-vday-time-number" id="ll-vday-minutes">00</span>
+                        <span class="ll-vday-time-label">Minutes</span>
+                    </div>
+                    <div class="ll-vday-time-section">
+                        <span class="ll-vday-time-number" id="ll-vday-seconds">00</span>
+                        <span class="ll-vday-time-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+
+            <a href="https://skinbylauralo.com/shop/" id="ll-vday-specials-button">
+                Shop the Valentine’s Special
+            </a>
+        </div>
+    </div>
+
+    <style>
+        #ll-vday-top-bar{
+            background:#000;
+            color:#fff;
+            padding:10px 16px 14px;
+            font-family:"Helvetica Neue", Arial, sans-serif;
+            font-size:14px;
+            position:relative;
+            z-index:9999;
+            box-shadow:0 2px 10px rgba(0,0,0,0.35);
+        }
+
+        /* make the header marquee blend into the header */
+        #ll-vday-top-bar .ll-vday-marquee{
+            border: none;
+            background: transparent;
+            padding: 0 0 10px;
+            margin: 0 0 6px;
+            border-radius: 0;
+        }
+        #ll-vday-top-bar .ll-vday-marquee:before{ display:none; }
+
+        .ll-vday-bottom-row{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-wrap:wrap;
+            gap:10px 20px;
+        }
+
+        .ll-vday-offer-text{
+            color:rgba(255,255,255,.92);
+            font-size:13px;
+            text-transform:uppercase;
+            letter-spacing:.08em;
+        }
+
+        .ll-vday-countdown-wrapper{
+            display:flex;
+            align-items:center;
+            gap:8px;
+        }
+
+        .ll-vday-countdown-label{
+            font-size:12px;
+            text-transform:uppercase;
+            letter-spacing:.12em;
+            color:rgba(255,228,230,.85);
+        }
+
+        #ll-vday-countdown{
+            display:flex;
+            align-items:center;
+            gap:6px;
+            color:#fff;
+            font-weight:800;
+        }
+
+        .ll-vday-time-section{ text-align:center; min-width:44px; }
+
+        .ll-vday-time-number{
+            display:block;
+            font-size:16px;
+            padding:4px 8px;
+            border-radius:8px;
+            background:linear-gradient(135deg, #E11D48, #FB7185);
+            color:#fff;
+            line-height:1.2;
+            box-shadow:0 0 0 1px rgba(255,228,230,0.14), 0 8px 18px rgba(225,29,72,0.18);
+        }
+
+        .ll-vday-time-label{
+            font-size:10px;
+            margin-top:2px;
+            text-transform:uppercase;
+            letter-spacing:.08em;
+            color:rgba(255,228,230,.85);
+        }
+
+        #ll-vday-specials-button{
+            display:inline-block;
+            padding:9px 18px;
+            background:linear-gradient(135deg, #fff, #FFE4E6);
+            color:#000;
+            text-decoration:none;
+            border-radius:999px;
+            font-weight:900;
+            font-size:13px;
+            text-transform:uppercase;
+            letter-spacing:.12em;
+            border:1px solid rgba(255,228,230,.65);
+            transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+            white-space:nowrap;
+        }
+
+        #ll-vday-specials-button:hover{
+            background:linear-gradient(135deg, #E11D48, #FB7185);
+            color:#fff;
+            border-color:rgba(255,228,230,.35);
+            box-shadow:0 10px 26px rgba(225,29,72,.25);
+            transform:translateY(-1px);
+        }
+
+        @media (max-width:768px){
+            .ll-vday-bottom-row{ flex-direction:column; }
+            .ll-vday-countdown-wrapper{ order:2; }
+            #ll-vday-specials-button{ order:3; width:100%; text-align:center; }
+        }
+
+        @media (max-width:480px){
+            #ll-vday-top-bar{ padding:8px 10px 10px; }
+            .ll-vday-time-number{ font-size:14px; }
+            .ll-vday-time-section{ min-width:38px; }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var targetDate = new Date('Feb 16, 2026 23:59:59').getTime();
+
+            var daysElement = document.getElementById('ll-vday-days');
+            var hoursElement = document.getElementById('ll-vday-hours');
+            var minutesElement = document.getElementById('ll-vday-minutes');
+            var secondsElement = document.getElementById('ll-vday-seconds');
+            var countdownContainer = document.getElementById('ll-vday-countdown');
+            var label = document.querySelector('.ll-vday-countdown-label');
+
+            function updateCountdown() {
+                var now = new Date().getTime();
+                var distance = targetDate - now;
+
+                if (distance <= 0) {
+                    clearInterval(countdownInterval);
+                    if (countdownContainer && label) {
+                        label.textContent = '';
+                        countdownContainer.innerHTML = '💘 Valentine’s event has ended – stay tuned for our next glow drop.';
+                    }
+                    return;
+                }
+
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (daysElement) daysElement.textContent = days.toString().padStart(2, '0');
+                if (hoursElement) hoursElement.textContent = hours.toString().padStart(2, '0');
+                if (minutesElement) minutesElement.textContent = minutes.toString().padStart(2, '0');
+                if (secondsElement) secondsElement.textContent = seconds.toString().padStart(2, '0');
+            }
+
+            updateCountdown();
+            var countdownInterval = setInterval(updateCountdown, 1000);
+        });
+    </script>
+    <?php
+}
+
+
+// -----------------------------
+// FREE SHIPPING PROGRESS BAR
+// -----------------------------
+
+define( 'LL_FREE_SHIPPING_THRESHOLD', 125 );
+
+function ll_render_free_shipping_progress_bar() {
+    if ( ! class_exists( 'WooCommerce' ) || ! WC()->cart ) return '';
+
+    $cart = WC()->cart;
+    $cart_has_items = ! $cart->is_empty();
+
+    $threshold = LL_FREE_SHIPPING_THRESHOLD;
+    $subtotal  = 0;
+
+    if ( $cart_has_items ) {
+        $subtotal = $cart->get_subtotal();
+    }
+
+    $remaining = max( 0, $threshold - $subtotal );
+    $percent   = ($threshold > 0) ? min( 100, ( $subtotal / $threshold ) * 100 ) : 0;
+
+    ob_start();
+    ?>
+    <div id="ll-shipping-progress-wrapper" class="cart-progress-bar-container">
+        <?php if ( $cart_has_items ) : ?>
+            <div class="ll-shipping-inner">
+                <div class="ll-shipping-text">
+                    <?php if ( $subtotal >= $threshold ) : ?>
+                        <span class="ll-shipping-emoji">🚚</span>
+                        <span class="ll-shipping-message">
+                            You’ve unlocked <strong>free shipping</strong> on your order! 💘
+                        </span>
+                    <?php else : ?>
+                        <span class="ll-shipping-emoji">✨</span>
+                        <span class="ll-shipping-message">
+                           Spend <strong class="ll-remaining-price"><?php echo wc_price( $remaining ); ?></strong> more to unlock free shipping.
+                        </span>
+                    <?php endif; ?>
+                </div>
+
+                <div class="ll-shipping-bar-outer">
+                    <div class="ll-shipping-bar-inner" style="width: <?php echo esc_attr( $percent ); ?>%;"></div>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+
+    <style>
+        .cart-progress-bar-container {
+            --vday-rose: #E11D48;
+            --vday-blush: #FB7185;
+            --vday-border: rgba(255,228,230,0.18);
+
+            padding: 15px 0;
+            margin-bottom: 20px;
+            background: #000;
+            border: 1px solid var(--vday-border);
+            color: #fff;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .cart-progress-bar-container:before{
+            content:"";
+            position:absolute;
+            left:0; right:0; top:0;
+            height:2px;
+            background: linear-gradient(90deg, transparent, var(--vday-rose), var(--vday-blush), transparent);
+            opacity: 0.85;
+        }
+
+        .ll-shipping-message strong.ll-remaining-price .woocommerce-Price-amount,
+        .ll-shipping-message strong.ll-remaining-price .woocommerce-Price-currencySymbol {
+            color: var(--vday-blush) !important;
+            text-decoration: none !important;
+        }
+
+        .ll-shipping-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .ll-shipping-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .ll-shipping-message strong {
+            font-weight: 800;
+            color: #fff;
+            text-decoration: underline;
+            text-decoration-color: var(--vday-blush);
+            text-underline-offset: 3px;
+        }
+
+        .ll-shipping-emoji { font-size: 18px; }
+
+        .ll-shipping-bar-outer {
+            width: 100%;
+            height: 7px;
+            border-radius: 999px;
+            background: rgba(255,228,230,0.14);
+            overflow: hidden;
+            box-shadow: inset 0 0 0 1px rgba(255,228,230,0.10);
+        }
+
+        .ll-shipping-bar-inner {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--vday-rose), var(--vday-blush));
+            transition: width 0.5s ease-in-out;
+            box-shadow: 0 0 14px rgba(225,29,72,0.25);
+        }
+
+        @media (max-width: 600px) {
+            .ll-shipping-text { font-size: 12px; flex-direction: column; gap: 2px; }
+            .ll-shipping-emoji { display: none; }
+        }
+    </style>
+    <?php
+    return ob_get_clean();
+}
+
+add_action( 'woocommerce_before_cart', 'show_free_shipping_bar_in_cart', 10 );
+add_action( 'woocommerce_before_mini_cart', 'show_free_shipping_bar_in_cart', 10 );
+
+function show_free_shipping_bar_in_cart() {
+    echo ll_render_free_shipping_progress_bar();
+}
+
+add_filter( 'woocommerce_add_to_cart_fragments', 'll_refresh_shipping_progress_bar_fragment' );
+function ll_refresh_shipping_progress_bar_fragment( $fragments ) {
+    $fragments['#ll-shipping-progress-wrapper'] = ll_render_free_shipping_progress_bar();
+    return $fragments;
+}
+
+// ----------------------------------------------------------------------
+// --- END: VALENTINE TOP BANNER + PRODUCT PAGE MARQUEE + FREE SHIPPING ---
+// ----------------------------------------------------------------------
